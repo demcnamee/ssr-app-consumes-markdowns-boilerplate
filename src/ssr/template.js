@@ -1,17 +1,13 @@
-// html skeleton provider
-export default function template(title, initialState = {}, content = '') {
-  let scripts = ''; // Dynamically ship scripts based on render type
-  if (content) {
-    scripts = ` <script>
+// create a full HTML file and inject it our preload app content
+// adding our app script to keep the logic from our React app
+
+const template = (title, initialState = {}, appContent = '') => {
+  let scripts = ` <script>
                    window.__STATE__ = ${JSON.stringify(initialState)}
                 </script>
                 <script src="assets/client.js"></script>
                 `;
-  }
-  // else {
-  //   scripts = ` <script src="assets/bundle.js"> </script> `;
-  // }
-  let page = `<!DOCTYPE html>
+  let htmlFile = `<!DOCTYPE html>
               <html lang="en">
               <head>
                 <meta charset="utf-8">
@@ -21,12 +17,14 @@ export default function template(title, initialState = {}, content = '') {
               <body>
                 <div class="content">
                    <div id="app" class="wrap-inner">
-                      ${content}
+                      ${appContent}
                    </div>
                 </div>
                   ${scripts}
               </body>
               `;
 
-  return page;
-}
+  return htmlFile;
+};
+
+export default template;

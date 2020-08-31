@@ -1,4 +1,8 @@
-// Transpile all code following this line with babel and use '@babel/preset-env' (aka ES6) preset.
+// Transpile all code following this line with babel and use babel/preset-env preset.
 require('@babel/register');
+const port = process.env.PORT || 3000;
+const app = require('./server');
 
-require('./app');
+app.listen(port, () => {
+  console.log(`app listinening on port ${port}`);
+});
