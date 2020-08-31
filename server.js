@@ -2,8 +2,12 @@ import express from 'express';
 import template from './src/ssr/template';
 import ssr from './src/ssr/ssr';
 import path from 'path';
+import getAllPages from './lib/getAllPages';
 
 const app = express();
+
+const listPages = getAllPages();
+console.log(listPages);
 
 // here we are going to add the markdown files data
 let initialState = {
