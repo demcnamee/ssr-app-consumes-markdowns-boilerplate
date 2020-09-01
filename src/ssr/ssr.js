@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 
 import configureStore from '../redux/configureStore';
 import App from '../components/app';
+import Home from '../sections/Home';
 
 /*
   creates the preloaded state from the Redux store
@@ -18,7 +19,7 @@ const srr = initialState => {
   // render our app content and returns a HTML string
   let appContent = renderToString(
     <Provider store={store}>
-      <App />
+      <Home />
     </Provider>
   );
 

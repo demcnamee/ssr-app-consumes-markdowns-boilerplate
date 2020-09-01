@@ -12,6 +12,7 @@ console.log(listPages);
 // here we are going to add the markdown files data
 let initialState = {
   //apps: data,
+  listPages,
 };
 
 // this allow the html file sent to the client to get files

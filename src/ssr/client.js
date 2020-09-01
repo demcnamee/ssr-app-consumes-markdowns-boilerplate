@@ -3,6 +3,7 @@ import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from '../redux/configureStore';
 import App from '../components/app';
+import Home from '../sections/Home';
 
 const state = window.__STATE__;
 delete window.__STATE__;
@@ -12,7 +13,7 @@ console.log('client file');
 hydrate(
   <Provider store={store}>
     {' '}
-    <App />{' '}
+    <Home />{' '}
   </Provider>,
   document.querySelector('#app')
 );
