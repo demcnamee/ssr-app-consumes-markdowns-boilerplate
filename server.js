@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import getAllPages from './lib/getAllPages';
 import ssrV2 from './src/ssr/staticRender/ssrV2';
+import ssrReactive from './src/ssr/reactiveRender/ssr';
 
 // components for render
 import Home from './src/sections/Home';
@@ -27,6 +28,13 @@ app.get('/', async (req, res) => {
 
   res.setHeader('Cache-Control', 'assets, max-age=604800');
   res.send(finalHtml);
+});
+
+app.get('/reactive_page', (req, res) => {
+  console.log('hit');
+  // render Home Reactive component
+  const finalHTML = ssrReactive(listPages);
+  res.send(finalHTML);
 });
 
 // get a post html with the specific md file

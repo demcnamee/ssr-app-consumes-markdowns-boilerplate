@@ -3,7 +3,8 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 
 import configureStore from '../../redux/configureStore';
-import Home from '../../sections/Home';
+import template from './template';
+import HomeReactive from '../../sections/HomeReactive';
 
 /*
   creates the preloaded state from the Redux store
@@ -18,15 +19,16 @@ const srr = initialState => {
   // render our app content and returns a HTML string
   let appContent = renderToString(
     <Provider store={store}>
-      <Home />
+      <HomeReactive />
     </Provider>
   );
 
+  console.log(appContent);
+
   const preloadedState = store.getState();
-  return {
-    appContent,
-    preloadedState,
-  };
+
+  const finalHtml = template('reactive app', preloadedState, appContent);
+  return finalHtml;
 };
 
 export default srr;
