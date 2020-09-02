@@ -1,13 +1,16 @@
 import express from 'express';
 import template from './src/ssr/template';
 import ssr from './src/ssr/ssr';
+import ssrComponent from './src/ssr/ssrComponent';
 import path from 'path';
 import getAllPages from './lib/getAllPages';
+
+import remark from 'remark';
+import html from 'remark-html';
 
 const app = express();
 
 const listPages = getAllPages();
-console.log(listPages);
 
 // here we are going to add the markdown files data
 let initialState = {
@@ -24,6 +27,22 @@ app.get('/', (req, res) => {
   // pre-load content of our application
   const { appContent, preloadedState } = ssr(initialState);
 
+  // create the final HTML with our content
+  const finalHtml = template('Blog App', preloadedState, appContent);
+  res.setHeader('Cache-Control', 'assets, max-age=604800');
+  res.send(finalHtml);
+});
+
+app.get('/:postTitle', async (req, res) => {
+  const titlePost = req.params.postTitle;
+  const contentHtml = await remark()
+    .use(html)
+    .process(listPages.fullPages[titlePost].content);
+
+  const { appContent, preloadedState } = ssrComponent(
+    preloadedState,
+    contentHtml
+  );
   // create the final HTML with our content
   const finalHtml = template('Blog App', preloadedState, appContent);
   res.setHeader('Cache-Control', 'assets, max-age=604800');
