@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    client: './src/ssr/client.js',
+    client: './src/ssr/reactiveRender/client.js',
   },
   output: {
     path: path.resolve(__dirname, 'assets'),

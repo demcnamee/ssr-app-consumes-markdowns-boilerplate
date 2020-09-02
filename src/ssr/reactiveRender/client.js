@@ -1,9 +1,9 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
-import configureStore from '../redux/configureStore';
-import App from '../components/app';
-import Home from '../sections/Home';
+import configureStore from '../../redux/configureStore';
+
+import Home from '../../sections/Home';
 
 const state = window.__STATE__;
 delete window.__STATE__;

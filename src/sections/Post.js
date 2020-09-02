@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Post = ({ content }) => {
-  return <div dangerouslySetInnerHTML={{ __html: content }}></div>;
+const Post = ({ htmlContent }) => {
+  return <div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>;
 };
 
 export default Post;

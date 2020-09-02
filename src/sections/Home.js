@@ -1,18 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 
-const Home = () => {
-  const generalState = useSelector(state => state.listPages.pageTitles);
-  const fetchPage = title => {
-    //const postPage = fetch("")
-  };
-
+const Home = ({ content }) => {
+  //const generalState = useSelector(state => state.listPages.pageTitles);
   return (
     <section id="#home">
       <h1>Home section</h1>
-      {generalState.map((title, i) => (
-        <a>{title}</a>
-      ))}
+      <ul>
+        {content.map((title, i) => (
+          <li>
+            <a href={`http://localhost:3000/${title}`} key={i}>
+              {title}
+            </a>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 };
