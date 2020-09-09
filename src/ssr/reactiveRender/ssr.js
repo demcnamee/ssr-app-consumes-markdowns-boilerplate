@@ -23,8 +23,6 @@ const srr = initialState => {
     </Provider>
   );
 
-  console.log(appContent);
-
   const preloadedState = store.getState();
 
   const finalHtml = template('reactive app', preloadedState, appContent);

@@ -6,10 +6,8 @@ const Home = ({ content }) => {
       <h1>Home section</h1>
       <ul>
         {content.map((title, i) => (
-          <li>
-            <a href={`http://localhost:3000/${title}`} key={i}>
-              {title}
-            </a>
+          <li key={i}>
+            <a href={`http://localhost:3000/posts/${title}`}>{title}</a>
           </li>
         ))}
       </ul>

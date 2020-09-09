@@ -9,7 +9,6 @@ const state = window.__STATE__;
 delete window.__STATE__;
 const store = configureStore(state);
 
-console.log('client file');
 hydrate(
   <Provider store={store}>
     {' '}

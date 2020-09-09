@@ -31,15 +31,16 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/reactive_page', (req, res) => {
-  console.log('hit');
   // render Home Reactive component
+  //include js file which also contains Redux
   const finalHTML = ssrReactive(listPages);
   res.send(finalHTML);
 });
 
 // get a post html with the specific md file
 //
-app.get('/:postTitle', async (req, res) => {
+app.get('/posts/:postTitle', async (req, res) => {
+  console.log('is running post path');
   // get post content
   const titlePost = req.params.postTitle;
   const postContent = listPages.fullPages[titlePost].content;
